@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_child.dart';
 import 'reusable_card.dart';
+import 'constants.dart';
 
-const Color cardColor = Color(0xFF282166);
-const Color activeColor = Color(0xFF5A16E5);
 enum Gender { male, female }
 
 class InputPage extends StatefulWidget {
@@ -13,8 +12,9 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Color maleColor = cardColor;
-  Color femaleColor = cardColor;
+  Color maleColor = kCardColor;
+  Color femaleColor = kCardColor;
+  int heigth = 180;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +24,7 @@ class _InputPageState extends State<InputPage> {
       ),
       body: SafeArea(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Expanded(
               child: Row(
@@ -63,7 +64,36 @@ class _InputPageState extends State<InputPage> {
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child: ReusableCard(color: cardColor),
+                    child: ReusableCard(
+                      color: kCardColor,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            'HEIGHT',
+                            style: kTextStyle,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.baseline,
+                            textBaseline: TextBaseline.alphabetic,
+                            children: <Widget>[
+                              Text(
+                                '$heigth',
+                                style: kStyleNumbers,
+                              ),
+                              Text(
+                                'cm',
+                                style: kTextStyle,
+                              )
+                            ],
+                          ),
+                          Slider(
+                            value: heigth.toDouble(),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -72,10 +102,10 @@ class _InputPageState extends State<InputPage> {
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child: ReusableCard(color: cardColor),
+                    child: ReusableCard(color: kCardColor),
                   ),
                   Expanded(
-                    child: ReusableCard(color: cardColor),
+                    child: ReusableCard(color: kCardColor),
                   ),
                 ],
               ),
@@ -96,12 +126,12 @@ class _InputPageState extends State<InputPage> {
     var selection = gender;
     switch (selection) {
       case Gender.male:
-        maleColor = activeColor;
-        femaleColor = cardColor;
+        maleColor = kActiveColor;
+        femaleColor = kCardColor;
         break;
       case Gender.female:
-        maleColor = cardColor;
-        femaleColor = activeColor;
+        maleColor = kCardColor;
+        femaleColor = kActiveColor;
         break;
     }
   }
