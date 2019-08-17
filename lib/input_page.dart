@@ -90,6 +90,15 @@ class _InputPageState extends State<InputPage> {
                           ),
                           Slider(
                             value: heigth.toDouble(),
+                            min: 80.0,
+                            max:230.0,
+                            activeColor: Color(0xFFa23fee),
+                            inactiveColor: Color(0xFF6f42e5),
+                            onChanged: (double newValue){
+                              setState(() {
+                               heigth = newValue.toInt(); 
+                              });
+                            },
                           ),
                         ],
                       ),
