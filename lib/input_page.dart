@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_child.dart';
 import 'reusable_card.dart';
 import 'constants.dart';
+import 'toogle.dart';
 
 enum Gender { male, female }
 
@@ -15,6 +16,8 @@ class _InputPageState extends State<InputPage> {
   Color maleColor = kCardColor;
   Color femaleColor = kCardColor;
   int heigth = 180;
+  int weight = 60;
+  int age = 25;
 
   @override
   Widget build(BuildContext context) {
@@ -91,12 +94,12 @@ class _InputPageState extends State<InputPage> {
                           Slider(
                             value: heigth.toDouble(),
                             min: 80.0,
-                            max:230.0,
+                            max: 230.0,
                             activeColor: Color(0xFFa23fee),
                             inactiveColor: Color(0xFF6f42e5),
-                            onChanged: (double newValue){
+                            onChanged: (double newValue) {
                               setState(() {
-                               heigth = newValue.toInt(); 
+                                heigth = newValue.toInt();
                               });
                             },
                           ),
@@ -111,10 +114,22 @@ class _InputPageState extends State<InputPage> {
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child: ReusableCard(color: kCardColor),
+                    child: ReusableCard(
+                      color: kCardColor,
+                      child: Toogle(
+                        text: 'WEIGTH',
+                        number: weight,
+                      ),
+                    ),
                   ),
                   Expanded(
-                    child: ReusableCard(color: kCardColor),
+                    child: ReusableCard(
+                      color: kCardColor,
+                      child: Toogle(
+                        text: 'AGE',
+                        number: age,
+                      ),
+                    ),
                   ),
                 ],
               ),
